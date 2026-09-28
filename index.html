@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parrilla SCM Colombia · Oct–Dic 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDEFF1;--surface:#FFFFFF;--soft:#F4F5F7;--ink:#181D22;--muted:#5B6670;--line:#D3D9DF;
+  --accent:#C4161C;--accent-ink:#FFFFFF;--ok:#1F7A4D;--warn:#B26A00;--bad:#B3261E;
+  --c-idea:#68737E;--c-copy:#2B6CB0;--c-diseno:#7A4FC2;--c-aprobado:#0E8A8A;--c-prog:#B26A00;--c-pub:#1F7A4D;
+  --shadow:0 12px 40px rgba(20,28,36,.22);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101316;--surface:#1A1F24;--soft:#21272D;--ink:#E7EBEE;--muted:#9AA5AF;--line:#2C343C;
+    --accent:#F0555A;--accent-ink:#1A0A0B;--ok:#4CC38A;--warn:#E5A23B;--bad:#F28B82;
+    --c-idea:#9AA5AF;--c-copy:#6FA8E8;--c-diseno:#B294F0;--c-aprobado:#4FC7C7;--c-prog:#E5A23B;--c-pub:#4CC38A;
+    --shadow:0 12px 40px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101316;--surface:#1A1F24;--soft:#21272D;--ink:#E7EBEE;--muted:#9AA5AF;--line:#2C343C;
+  --accent:#F0555A;--accent-ink:#1A0A0B;--ok:#4CC38A;--warn:#E5A23B;--bad:#F28B82;
+  --c-idea:#9AA5AF;--c-copy:#6FA8E8;--c-diseno:#B294F0;--c-aprobado:#4FC7C7;--c-prog:#E5A23B;--c-pub:#4CC38A;
+  --shadow:0 12px 40px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 "Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:"Barlow Semi Condensed","Barlow",system-ui,sans-serif;margin:0;font-weight:700;letter-spacing:.005em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+em{color:var(--muted);font-style:normal}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:12px 18px 0}
+.brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mark{width:6px;align-self:stretch;min-height:34px;background:var(--accent);border-radius:2px}
+.brand h1{font-size:22px;line-height:1.1}
+.brand small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.grow{flex:1}
+.sync{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.sync.live .dot{background:var(--ok)}
+.sync.off .dot{background:var(--warn)}
+.tabs{display:flex;gap:2px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:9px 14px;cursor:pointer;color:var(--muted);font-weight:500;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+
+main{max-width:1240px;margin:0 auto;padding:16px 18px 60px}
+.banner{background:color-mix(in srgb,var(--warn) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:6px;padding:9px 12px;margin-bottom:12px;font-size:14px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.toolbar input[type=search],.toolbar select{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-height:38px}
+.toolbar input[type=search]{flex:1 1 220px;min-width:160px}
+.btn{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 14px;min-height:38px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.danger{color:var(--bad)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* status */
+.st{--c:var(--c-idea)}
+.st-copy{--c:var(--c-copy)}.st-diseno{--c:var(--c-diseno)}.st-aprobado{--c:var(--c-aprobado)}.st-prog{--c:var(--c-prog)}.st-pub{--c:var(--c-pub)}
+.pill{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 38%,transparent);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:500;white-space:nowrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips .pill{cursor:pointer;background:var(--surface)}
+.chips .pill[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 22%,var(--surface));border-color:var(--c)}
+.chips b{font-family:"Barlow Semi Condensed",sans-serif;font-size:15px}
+
+/* table */
+.tablewrap{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:9px 12px;border-bottom:1px solid var(--line);background:var(--soft);position:sticky;top:0}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr[data-open]{cursor:pointer}
+tbody tr[data-open]:hover td{background:var(--soft)}
+tr.phase td{background:var(--soft);font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:16px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:default}
+tr.phase td span{font-family:"Barlow",sans-serif;font-weight:400;color:var(--muted);font-size:13px;margin-left:8px}
+.c-date{white-space:nowrap;width:110px}
+.c-date b{display:block;font-weight:600}
+.c-date span{color:var(--muted);font-size:13px}
+.ttl{display:block;font-weight:500}
+.sub{display:flex;gap:6px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;margin-top:3px}
+.tag{border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:12px;color:var(--muted);background:var(--soft)}
+.tag.paid{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:transparent;font-weight:600}
+.late-flag{color:var(--bad);font-size:12px;font-weight:600;margin-left:6px}
+tr.late .c-date b{color:var(--bad)}
+.stsel{appearance:none;-webkit-appearance:none;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:500;cursor:pointer;background:color-mix(in srgb,var(--c) 14%,var(--surface));color:var(--c);border:1px solid color-mix(in srgb,var(--c) 38%,transparent)}
+.stsel option{color:var(--ink);background:var(--surface)}
+
+/* calendar */
+.calhead{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.calhead h2{font-size:22px;min-width:150px}
+.calwrap{overflow-x:auto}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface);min-width:830px}
+.dow{padding:7px 8px;font-size:13px;font-weight:600;color:var(--muted);background:var(--soft);border-bottom:1px solid var(--line)}
+.cell{min-height:104px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:5px;display:flex;flex-direction:column;gap:4px;position:relative}
+.cell:nth-child(7n){border-right:0}
+.cell.out{background:var(--soft)}
+.cell.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.cell .n{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.cell .add{opacity:0;background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0 4px}
+.cell:hover .add,.cell .add:focus-visible{opacity:1}
+.chip{text-align:left;border:0;border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 12%,var(--surface));border-radius:3px;padding:3px 6px;font-size:12.5px;line-height:1.25;cursor:pointer}
+.chip b{display:block;font-weight:600;color:var(--c);font-size:12px}
+
+/* leads */
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,1fr);gap:10px;overflow-x:auto;padding-bottom:8px}
+.col{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:8px;min-height:180px}
+.col h3{font-size:16px;display:flex;justify-content:space-between;align-items:baseline;padding:2px 4px}
+.col h3 span{font-family:"Barlow",sans-serif;font-weight:400;font-size:12.5px;color:var(--muted)}
+.lcard{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 10px;cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.lcard:hover{border-color:var(--muted)}
+.lcard b{font-weight:600}
+.lcard small{color:var(--muted);font-size:13px}
+.lcard select{margin-top:5px;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-size:13px}
+.val{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.scard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.scard input,.scard textarea{width:100%;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.scard input{font-weight:600}
+.scard textarea{min-height:170px;resize:vertical;line-height:1.5}
+.note{color:var(--muted);font-size:13px;margin:0 0 12px}
+
+/* summary */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.panel h2{font-size:18px;margin-bottom:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi b{display:block;font-family:"Barlow Semi Condensed",sans-serif;font-size:32px;line-height:1.05}
+.kpi span{color:var(--muted);font-size:13.5px}
+.row{display:grid;grid-template-columns:130px 1fr 92px;gap:10px;align-items:center;margin:7px 0;font-size:14px}
+.bar{height:10px;background:var(--soft);border-radius:5px;position:relative;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.bar i.s{background:var(--c)}
+.bar u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);opacity:.7}
+.row small{color:var(--muted);text-align:right;font-size:13px}
+.legend{color:var(--muted);font-size:13px;margin:4px 0 0}
+.funnel .row{grid-template-columns:170px 1fr 84px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.list li:last-child{border-bottom:0}
+.list small{color:var(--muted);white-space:nowrap}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:28px;text-align:center;color:var(--muted)}
+
+/* drawer */
+.veil{position:fixed;inset:0;background:rgba(10,14,18,.45);z-index:40;display:none}
+.veil.open{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(580px,100%);background:var(--surface);z-index:50;box-shadow:var(--shadow);display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.drawer.open{display:flex;animation:slide .18s ease-out}
+@keyframes slide{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.drawer.open{animation:none}}
+.dh{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:20px}
+.x{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:2px 8px}
+.db{flex:1;overflow-y:auto;padding:14px 18px}
+.df{padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.meta{color:var(--muted);font-size:12.5px;flex-basis:100%}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:13.5px}
+.fld>span{color:var(--muted);font-weight:500}
+.fld input,.fld select,.fld textarea{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-height:38px}
+.fld textarea{resize:vertical;line-height:1.5}
+.full{grid-column:1/-1}
+.chk{flex-direction:row;align-items:center;gap:8px;min-height:38px;align-self:end}
+.chk input{width:auto;min-height:0}
+.sec{grid-column:1/-1;font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:16px;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+.sec small{font-family:"Barlow",sans-serif;font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+.copyrow{display:flex;justify-content:space-between;align-items:center}
+.mini{background:none;border:1px solid var(--line);border-radius:5px;padding:1px 8px;font-size:12.5px;cursor:pointer;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:6px;z-index:80;font-size:14px;max-width:90%;display:none}
+.toast.show{display:block}
+@media (max-width:640px){
+  .fg{grid-template-columns:1fr}
+  .row,.funnel .row{grid-template-columns:100px 1fr 76px}
+  .brand h1{font-size:19px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div>
+        <h1>Parrilla de contenido · SCM Group Colombia</h1>
+        <small>Octubre – Diciembre 2026 · Instagram y Facebook</small>
+      </div>
+      <div class="grow"></div>
+      <div class="sync" id="sync" role="status"><span class="dot"></span><span id="synctext">Conectando…</span></div>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-view="parrilla">Parrilla</button>
+      <button class="tab" role="tab" data-view="calendario">Calendario</button>
+      <button class="tab" role="tab" data-view="leads">Leads</button>
+      <button class="tab" role="tab" data-view="stories">Stories</button>
+      <button class="tab" role="tab" data-view="resumen">Resumen</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div id="banner"></div>
+  <div class="toolbar" id="toolbar"></div>
+  <div id="content"><div class="empty">Conectando con el tablero compartido…</div></div>
+</main>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dtitle">
+  <div class="dh"><h2 id="dtitle"></h2><button class="x" id="dclose" aria-label="Cerrar">×</button></div>
+  <form class="db" id="dform" autocomplete="off"></form>
+  <div class="df" id="dfoot"></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = n => String(n).padStart(2,'0');
+const nf = new Intl.NumberFormat('es-CO');
+const DOW = ['dom','lun','mar','mié','jue','vie','sáb'];
+const MES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const MESL = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const parseD = s => { const [y,m,d] = String(s||'').split('-').map(Number); return new Date(y||2026,(m||1)-1,d||1); };
+const isoD = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const todayISO = () => isoD(new Date());
+const fmtDate = s => { if(!s) return '—'; const d = parseD(s); return DOW[d.getDay()]+' '+d.getDate()+' '+MES[d.getMonth()]; };
+const fmtTime = t => { if(!t) return ''; const [h,m] = t.split(':').map(Number); return ((h%12)||12)+':'+pad(m)+' '+(h>=12?'p. m.':'a. m.'); };
+const money = n => (n==null||n==='') ? '—' : '$'+nf.format(n);
+const rel = ts => { if(!ts) return ''; const m = Math.round((Date.now()-ts)/60000); if(m<1) return 'hace un momento'; if(m<60) return 'hace '+m+' min'; const h = Math.round(m/60); if(h<24) return 'hace '+h+' h'; return 'hace '+Math.round(h/24)+' d'; };
+
+/* ---------- catálogos ---------- */
+const STATUSES = ['Idea','Copy listo','Diseño','Aprobado','Programado','Publicado'];
+const STCLASS = {'Idea':'st','Copy listo':'st st-copy','Diseño':'st st-diseno','Aprobado':'st st-aprobado','Programado':'st st-prog','Publicado':'st st-pub'};
+const stc = s => STCLASS[s] || 'st';
+const LINES = [['Producto',25,'Producto / maquinaria'],['Aplicaciones',20,'Aplicaciones / problemas'],['Tecnología',20,'Tecnología / educación'],['Servicio',15,'Servicio / repuestos'],['SCM Colombia',10,'SCM Colombia / equipo / instalaciones'],['Comercial',10,'Comercial / ofertas']];
+const PHASES = {'Octubre':'Conversión + posicionamiento','Noviembre':'Autoridad + servicio + aplicaciones','Diciembre':'Confianza + comercial + cierre'};
+const FORMATS = ['Reel','Carrusel','Foto','Post','Foto/Reel','Post/Reel'];
+const PLATFORMS = ['IG + FB','IG','FB'];
+const STAGES = ['Nuevo','Contactado','Cotizado','Negociación','Ganado','Perdido'];
+const SOURCES = ['DM Instagram','Story','Reel / Post','Pauta','WhatsApp','Referido','Otro'];
+
+/* ---------- datos iniciales (se cargan una sola vez al tablero compartido) ---------- */
+const COPY = {
+'2026-10-01': {brief:'Concepto: no empezar vendiendo. Primero establecer presencia.', copy:'La tecnología SCM ya está en Colombia.\n\nSCM Group desarrolla maquinaria y soluciones para la transformación de la madera, acompañando a profesionales, talleres e industrias en sus procesos productivos.\n\nAhora, desde Colombia, ponemos esa tecnología más cerca de quienes buscan llevar su producción al siguiente nivel.\n\nMáquinas.\nTecnología.\nServicio.\nRespaldo.\n\nEste es el comienzo.\n\n🇨🇴 SCM Group Colombia\n\n#SCMGroup #SCMColombia #Madera #Carpintería #IndustriaDeLaMadera'},
+'2026-10-02': {brief:'Muy directo. Reel/anuncio de conversión.', copy:'SCM MINIMAX SC 4E\n\nUna máquina profesional, ahora disponible en Colombia.\n\n• Nueva\n• Entrega inmediata\n• Disponible en Colombia\n• $29.000.000\n\nUna oportunidad para incorporar tecnología SCM a tu producción.\n\n📩 Solicita información por mensaje directo.\n\n#SCM #SCMColombia #MinimaxSC4E #Carpintería #MaquinariaParaMadera'},
+'2026-10-06': {brief:'Carrusel de 5 slides:\n1. SCM Minimax SC 4E\n2. Sierra circular con grupo de corte inclinable.\n3. Carro deslizante de 360 mm.\n4. Capacidad de escuadrado de hasta 3.200 mm según configuración.\n5. ¿Quieres conocerla? Escríbenos.', copy:'No todas las máquinas cumplen la misma función.\n\nLa SCM Minimax SC 4E está diseñada para operaciones de corte y escuadrado con diferentes configuraciones y posibilidades de trabajo.\n\nHoy te mostramos sus características. En las próximas publicaciones veremos qué significan realmente en el proceso de producción.\n\nDesliza y conócela.\n\n📩 ¿Quieres información? Escríbenos.\n\n#SCMGroup #SCMColombia #Minimax #CarpinteríaProfesional #Madera'},
+'2026-10-08': {brief:'Reel: detalles del carro, grupo de corte, volante, guías, etc.', copy:'La precisión no empieza cuando realizas el corte.\n\nEmpieza en la máquina.\n\nLa SCM Minimax SC 4E integra elementos diseñados para trabajar el proceso de corte y escuadrado con control y estabilidad.\n\nConoce la máquina que tenemos disponible en Colombia.\n\n📩 Solicita la ficha técnica o información comercial por DM.\n\n#SCM #SCMColombia #Tecnología #Carpintería #MaquinariaIndustrial'},
+'2026-10-13': {brief:'Aquí empezamos a salir del contenido puramente corporativo.\n\nCarrusel: ¿Para qué necesitas una sierra?\nSlide 2: Corte de paneles\nSlide 3: Escuadrado\nSlide 4: Cortes angulares\nSlide 5: Trabajos profesionales de carpintería\nSlide 6: La máquina debe responder a tu proceso.', copy:'Antes de comprar una máquina, hay una pregunta más importante:\n\n¿Qué necesitas producir?\n\nEl volumen de trabajo, los materiales, las dimensiones y el tipo de corte son parte de la decisión.\n\nPor eso, elegir maquinaria no debería empezar por el catálogo.\n\nDebería empezar por entender tu proceso.\n\n¿Quieres saber si la SCM Minimax SC 4E se adapta al tuyo?\n\n📩 Escríbenos.\n\n#SCMColombia #SCMGroup #Carpintería #Producción #Madera'},
+'2026-11-10': {brief:'', copy:'Comprar una máquina es solo una parte del proceso.\n\nLa operación, el mantenimiento, la asistencia técnica y la disponibilidad de repuestos también forman parte de una solución industrial.\n\nEn SCM Group Colombia queremos construir esa relación más allá de la venta.\n\nMáquina + servicio + respaldo.\n\nPorque una inversión productiva también necesita acompañamiento.\n\n#SCMColombia #SCMGroup #ServicioTécnico #Maquinaria #IndustriaDeLaMadera'},
+'2026-11-13': {notes:'Aquí se puede empezar a preparar el terreno para el FRENTE 06 del pegante, sin mezclar todavía demasiado.', copy:'Una máquina también depende de lo que ocurre después de la compra.\n\nRepuestos, mantenimiento y asistencia hacen parte de la continuidad de una operación productiva.\n\nEn SCM Group Colombia trabajamos para acercar ese respaldo al mercado colombiano.\n\n¿Necesitas información sobre repuestos o servicio?\n\n📩 Escríbenos.\n\n#SCMColombia #SCMGroup #Repuestos #Servicio #Carpintería'},
+'2026-11-24': {notes:'Especialmente importante frente al mercado de maquinaria económica. No atacamos a China ni a ningún competidor: educamos al comprador sobre el costo y las implicaciones de una decisión de maquinaria.', brief:'Tema: "5 preguntas antes de comprar maquinaria para madera"\n1. ¿Qué voy a producir?\n2. ¿Qué volumen tengo?\n3. ¿Qué materiales trabajo?\n4. ¿Qué precisión necesito?\n5. ¿Qué soporte tendré después de comprar?'},
+'2026-12-18': {notes:'Puede ser un contenido muy interesante comercialmente.', copy:'2027 empieza antes de enero.\n\nSi estás pensando en aumentar capacidad, incorporar nueva tecnología o mejorar un proceso de producción, este es el momento de empezar a evaluar tus necesidades.\n\nEn SCM Group Colombia podemos ayudarte a analizar qué solución se adapta a tu proceso.\n\nCuéntanos qué quieres producir en 2027.\n\n📩 Escríbenos por DM.\n\n#SCMColombia #SCMGroup #IndustriaDeLaMadera #Carpintería #Producción'}
+};
+// [fecha, hora, formato, tema, objetivo, línea, fase, pauta]
+const ROWS = [
+['2026-10-01','12:30','Reel','SCM Colombia: nueva etapa','Presentación','SCM Colombia','Octubre',0],
+['2026-10-02','13:00','Reel','Minimax SC 4E disponible','Conversión','Comercial','Octubre',1],
+['2026-10-06','12:30','Carrusel','¿Qué es la Minimax SC 4E?','Producto','Producto','Octubre',0],
+['2026-10-08','12:30','Reel','SC 4E: precisión y capacidad','Producto','Producto','Octubre',0],
+['2026-10-09','13:00','Reel','SC 4E — $29 millones','Conversión','Comercial','Octubre',1],
+['2026-10-13','12:30','Carrusel','¿Qué trabajos puedes realizar?','Aplicaciones','Aplicaciones','Octubre',0],
+['2026-10-15','12:30','Reel','Detalles de la máquina','Producto','Producto','Octubre',0],
+['2026-10-16','13:00','Carrusel','Máquina disponible en Colombia','Conversión','Comercial','Octubre',0],
+['2026-10-20','12:30','Reel','Corte a 45° / aplicaciones','Técnico','Tecnología','Octubre',0],
+['2026-10-22','12:30','Carrusel','¿Qué tener en cuenta al comprar una máquina?','Educación','Tecnología','Octubre',0],
+['2026-10-23','13:00','Reel','SCM: tecnología + respaldo','Marca','SCM Colombia','Octubre',0],
+['2026-10-27','12:30','Carrusel','Máquina vs. necesidad productiva','Educación','Tecnología','Octubre',0],
+['2026-10-29','12:30','Reel','SC 4E: recorrido visual','Producto','Producto','Octubre',0],
+['2026-10-30','13:00','Carrusel','Última llamada / disponibilidad','Conversión','Comercial','Octubre',0],
+['2026-11-03','12:30','Carrusel','¿Qué máquina necesita cada proceso?','Educación','Aplicaciones','Noviembre',0],
+['2026-11-05','12:30','Reel','Tecnología SCM','Autoridad','Tecnología','Noviembre',0],
+['2026-11-06','13:00','Foto/Reel','SCM Colombia: equipo','Confianza','SCM Colombia','Noviembre',0],
+['2026-11-10','12:30','Carrusel','Servicio técnico','Servicio','Servicio','Noviembre',0],
+['2026-11-12','12:30','Reel','Instalación / puesta en marcha','Confianza','Servicio','Noviembre',0],
+['2026-11-13','13:00','Carrusel','Repuestos SCM','Postventa','Servicio','Noviembre',0],
+['2026-11-17','12:30','Reel','Aplicación de una máquina','Educación','Aplicaciones','Noviembre',0],
+['2026-11-19','12:30','Carrusel','Tecnología vs. proceso','Educación','Tecnología','Noviembre',0],
+['2026-11-20','13:00','Reel','Visita / cliente / instalación','Prueba social','SCM Colombia','Noviembre',0],
+['2026-11-24','12:30','Carrusel','Errores al comprar maquinaria','Educación','Tecnología','Noviembre',0],
+['2026-11-26','12:30','Reel','Máquina + proceso','Aplicación','Aplicaciones','Noviembre',0],
+['2026-11-27','13:00','Carrusel','Servicio + repuestos','Postventa','Servicio','Noviembre',0],
+['2026-12-01','12:30','Reel','¿Qué significa respaldo local?','Marca','SCM Colombia','Noviembre',0],
+['2026-12-03','12:30','Carrusel','Soluciones SCM','Producto','Producto','Diciembre',0],
+['2026-12-04','13:00','Reel','SCM Colombia 2026','Marca','SCM Colombia','Diciembre',0],
+['2026-12-08','12:30','Reel','Aplicación / máquina','Educación','Aplicaciones','Diciembre',0],
+['2026-12-10','12:30','Carrusel','Tecnología + servicio','Valor','Tecnología','Diciembre',0],
+['2026-12-11','13:00','Reel','Disponibilidad / oportunidad','Conversión','Comercial','Diciembre',0],
+['2026-12-15','12:30','Carrusel','¿Qué significa invertir en maquinaria?','Educación','Tecnología','Diciembre',0],
+['2026-12-17','12:30','Reel','Instalaciones / clientes 2026','Confianza','SCM Colombia','Diciembre',0],
+['2026-12-18','13:00','Carrusel','Soluciones para 2027','Comercial','Comercial','Diciembre',0],
+['2026-12-22','12:30','Reel','SCM Colombia: cierre de año','Marca','SCM Colombia','Diciembre',0],
+['2026-12-23','12:30','Post','Navidad','Relacional','SCM Colombia','Diciembre',0],
+['2026-12-29','12:30','Carrusel','2026 en cifras','Transparencia','SCM Colombia','Diciembre',0],
+['2026-12-31','12:30','Post/Reel','Cierre de año','Marca','SCM Colombia','Diciembre',0]
+];
+const SEED_POSTS = ROWS.map((r,i) => {
+  const c = COPY[r[0]] || {};
+  return {id:'p'+pad(i+1), date:r[0], time:r[1], platform:'IG + FB', format:r[2], topic:r[3], objective:r[4], line:r[5], phase:r[6],
+    paid:!!r[7], status: c.copy ? 'Copy listo' : 'Idea', owner:'', brief:c.brief||'', copy:c.copy||'', notes:c.notes||'', link:'',
+    reach:null, interactions:null, dms:null, leads:null, updatedAt:null, updatedBy:null};
+});
+const SEED_STORIES = [
+ {id:'s1', title:'Lunes · Presencia', ideas:'• "Esta semana en SCM Colombia"\n• Máquina / instalación / equipo\n• Repost de SCM Italia / Brasil'},
+ {id:'s2', title:'Miércoles · Interacción', ideas:'Encuestas:\n• ¿Qué máquina utilizas actualmente? → Sierra circular / Escuadradora\n• ¿Qué limita más tu producción? → Tiempo / Precisión / Capacidad / Mantenimiento\n\nSirve además como investigación comercial.'},
+ {id:'s3', title:'Viernes · Conversión', ideas:'• ¿Estás buscando maquinaria para madera? → [Quiero información]\n• ¿Quieres conocer las máquinas disponibles en Colombia? → [Escríbenos]\n\nAprovechar el sistema de DM que ya tienen funcionando.'}
+];
+
+/* ---------- estado ---------- */
+const S = {
+  view:'parrilla', posts:new Map(), leads:new Map(), stories:new Map(),
+  ready:{posts:false, leads:false, stories:false},
+  f:{q:'', phase:'', status:'', line:'', lq:'', lstage:''},
+  cal:{y:2026, m:9}, db:null, dl:null, userNS:null, canWrite:true, meId:null, meName:'', names:{}, offline:false, seeding:false
+};
+{ const n = new Date(); if(n.getFullYear()===2026 && n.getMonth()>=9) S.cal.m = n.getMonth(); }
+const D = {open:false, kind:null, id:null, base:null, isNew:false};
+
+/* ---------- mensajes ---------- */
+let toastT;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3200); }
+function errMsg(e){
+  const c = e && e.code;
+  if(c==='invalid_argument'||c==='not_granted') return 'No se pudo guardar. Tu acceso puede ser de solo lectura: pide permiso de Colaborador o Editor.';
+  if(c==='quota_exceeded') return 'Se alcanzó el límite de registros del tablero. Elimina alguno e inténtalo de nuevo.';
+  if(c==='resource_exhausted') return 'Demasiadas operaciones seguidas. Espera unos segundos e inténtalo de nuevo.';
+  if(c==='revoked') return 'Perdiste el acceso al tablero. Recarga la página.';
+  return 'No se pudo guardar. Inténtalo de nuevo.';
+}
+
+/* ---------- guardado (compartido o local) ---------- */
+async function save(coll, id, fields, isNew){
+  if(!S.canWrite){ toast('Tu acceso es de solo lectura.'); return false; }
+  const rec = Object.assign({}, fields, {updatedAt:Date.now(), updatedBy:S.meId||null});
+  if(isNew) rec.id = id;
+  if(S.db){
+    try{
+      const ref = S.db.collection(coll).doc(id);
+      if(isNew) await ref.set(rec); else await ref.update(rec);
+      return true;
+    }catch(e){ toast(errMsg(e)); return false; }
+  }
+  const m = S[coll]; m.set(id, Object.assign({}, m.get(id)||{id}, rec, {id}));
+  renderContent(); return true;
+}
+async function removeDoc(coll, id){
+  if(!S.canWrite){ toast('Tu acceso es de solo lectura.'); return false; }
+  if(S.db){
+    try{ await S.db.collection(coll).doc(id).delete(); return true; }
+    catch(e){ toast(errMsg(e)); return false; }
+  }
+  S[coll].delete(id); renderContent(); return true;
+}
+const newId = p => p+'_'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+
+async function nameOf(id){
+  if(!id) return '';
+  if(S.names[id]!==undefined) return S.names[id];
+  if(!S.userNS) return '';
+  try{ const ps = await S.userNS.profiles([id]); const n = (ps && ps[id] && ps[id].name) || ''; S.names[id]=n; return n; }
+  catch(e){ return ''; }
+}
+
+/* ---------- siembra inicial ---------- */
+async function setWithRetry(ref, data){
+  for(let i=0;i<4;i++){
+    try{ await ref.set(data); return; }
+    catch(e){ if(e && e.code==='resource_exhausted' && i<3){ await sleep(900*(i+1)); continue; } throw e; }
+  }
+}
+async function seedIfEmpty(){
+  const meta = S.db.doc('meta/init');
+  const snap = await meta.get();
+  if(snap.exists && snap.data().seeded) return;
+  const holder = 'h'+Math.random().toString(36).slice(2);
+  const lease = await meta.acquire({holder, ttlMs:120000});
+  if(!lease.acquired) return;
+  const again = await meta.get();
+  if(again.exists && again.data().seeded) return;
+  S.seeding = true; renderContent();
+  const have = new Set(); (await S.db.collection('posts').get()).docs.forEach(d=>have.add(d.id));
+  const haveS = new Set(); (await S.db.collection('stories').get()).docs.forEach(d=>haveS.add(d.id));
+  for(const p of SEED_POSTS){ if(!have.has(p.id)){ await setWithRetry(S.db.collection('posts').doc(p.id), p); await sleep(40); } }
+  for(const s of SEED_STORIES){ if(!haveS.has(s.id)){ await setWithRetry(S.db.collection('stories').doc(s.id), Object.assign({updatedAt:null,updatedBy:null}, s)); } }
+  await meta.update({seeded:true});
+  S.seeding = false; renderContent();
+}
+
+/* ---------- ordenamiento y filtros ---------- */
+const sortedPosts = () => [...S.posts.values()].sort((a,b)=>((a.date||'')+(a.time||'')).localeCompare((b.date||'')+(b.time||'')));
+const isLate = p => p.date && p.date < todayISO() && p.status !== 'Publicado';
+
+/* ---------- barra superior y banner ---------- */
+function renderChrome(){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', t.dataset.view===S.view ? 'true':'false'));
+  const sy = $('#sync');
+  if(S.offline){ sy.className='sync off'; $('#synctext').textContent='Sin sincronizar (solo esta sesión)'; }
+  else if(S.db){ sy.className='sync live'; $('#synctext').textContent = 'En vivo'+(S.meName?' · '+S.meName:''); }
+  else { sy.className='sync'; $('#synctext').textContent='Conectando…'; }
+  let b='';
+  if(S.offline) b='<div class="banner">Estás viendo una copia sin conexión al tablero compartido. Los cambios no se guardan ni los verá la otra persona. Abre el enlace desde tu cuenta de Claude para trabajar en conjunto.</div>';
+  else if(!S.canWrite) b='<div class="banner">Tienes acceso de solo lectura. Pide que te compartan como Colaborador o Editor para poder modificar.</div>';
+  $('#banner').innerHTML=b;
+}
+
+/* ---------- barra de herramientas por vista ---------- */
+const opt = (arr, val, all) => (all!==undefined?'<option value="">'+esc(all)+'</option>':'')+arr.map(a=>{const v=Array.isArray(a)?a[0]:a; const l=Array.isArray(a)?(a[2]||a[0]):a; return '<option value="'+esc(v)+'"'+(v===val?' selected':'')+'>'+esc(l)+'</option>';}).join('');
+function renderToolbar(){
+  const t = $('#toolbar'); const w = S.canWrite;
+  if(S.view==='parrilla'){
+    t.innerHTML = '<input type="search" id="fq" placeholder="Buscar tema, copy o responsable" value="'+esc(S.f.q)+'" aria-label="Buscar">'
+      +'<select id="fphase" aria-label="Fase">'+opt(Object.keys(PHASES),S.f.phase,'Todas las fases')+'</select>'
+      +'<select id="fstatus" aria-label="Estado">'+opt(STATUSES,S.f.status,'Todos los estados')+'</select>'
+      +'<select id="fline" aria-label="Línea">'+opt(LINES,S.f.line,'Todas las líneas')+'</select>'
+      +'<span class="grow"></span><button class="btn" id="bexport">Exportar CSV</button>'
+      +'<button class="btn primary" id="bnew"'+(w?'':' disabled')+'>Nueva publicación</button>';
+    $('#fq').oninput = e=>{S.f.q=e.target.value; renderContent();};
+    $('#fphase').onchange = e=>{S.f.phase=e.target.value; renderContent();};
+    $('#fstatus').onchange = e=>{S.f.status=e.target.value; renderContent();};
+    $('#fline').onchange = e=>{S.f.line=e.target.value; renderContent();};
+    $('#bnew').onclick = ()=>openPost(null,{});
+    $('#bexport').onclick = exportPosts;
+  } else if(S.view==='calendario'){
+    t.innerHTML = '';
+  } else if(S.view==='leads'){
+    t.innerHTML = '<input type="search" id="lq" placeholder="Buscar nombre, empresa o producto" value="'+esc(S.f.lq)+'" aria-label="Buscar leads">'
+      +'<span class="grow"></span><button class="btn" id="bexport">Exportar CSV</button>'
+      +'<button class="btn primary" id="bnew"'+(w?'':' disabled')+'>Nuevo lead</button>';
+    $('#lq').oninput = e=>{S.f.lq=e.target.value; renderContent();};
+    $('#bnew').onclick = ()=>openLead(null);
+    $('#bexport').onclick = exportLeads;
+  } else if(S.view==='stories'){
+    t.innerHTML = '<span class="grow"></span><button class="btn primary" id="bnew"'+(w?'':' disabled')+'>Nueva Story</button>';
+    $('#bnew').onclick = async ()=>{ await save('stories', newId('s'), {title:'Nueva Story', ideas:''}, true); };
+  } else { t.innerHTML=''; }
+}
+
+/* ---------- vistas ---------- */
+function loadingOrEmpty(msg){
+  if(S.seeding) return '<div class="empty">Cargando la parrilla inicial en el tablero compartido… un momento.</div>';
+  return '<div class="empty">'+msg+'</div>';
+}
+function renderContent(){
+  const c = $('#content');
+  const v = S.view;
+  if(v==='parrilla') c.innerHTML = vParrilla();
+  else if(v==='calendario') c.innerHTML = vCalendario();
+  else if(v==='leads') c.innerHTML = vLeads();
+  else if(v==='stories') c.innerHTML = vStories();
+  else c.innerHTML = vResumen();
+}
+
+function vParrilla(){
+  const all = sortedPosts();
+  if(!all.length) return loadingOrEmpty('Todavía no hay publicaciones. Crea la primera con “Nueva publicación”.');
+  const f = S.f, q = f.q.trim().toLowerCase();
+  const list = all.filter(p =>
+    (!f.phase||p.phase===f.phase)&&(!f.status||p.status===f.status)&&(!f.line||p.line===f.line)&&
+    (!q || [p.topic,p.copy,p.brief,p.owner,p.objective,p.notes].join(' ').toLowerCase().includes(q)));
+  const counts = {}; STATUSES.forEach(s=>counts[s]=0); all.forEach(p=>{ if(counts[p.status]!==undefined) counts[p.status]++; });
+  const late = all.filter(isLate).length;
+  let h = '<div class="chips">'+STATUSES.map(s=>'<button class="pill '+stc(s)+'" data-fstatus="'+esc(s)+'" aria-pressed="'+(f.status===s)+'"><b>'+counts[s]+'</b> '+esc(s)+'</button>').join('')
+    +(late?'<span class="pill" style="--c:var(--bad)"><b>'+late+'</b> atrasadas</span>':'')+'</div>';
+  if(!list.length) return h+'<div class="empty">Ninguna publicación coincide con los filtros.</div>';
+  let last = null, rows = '';
+  list.forEach(p=>{
+    if(p.phase!==last){ last=p.phase; rows += '<tr class="phase"><td colspan="5">'+esc(p.phase||'Sin fase')+'<span>'+esc(PHASES[p.phase]||'')+'</span></td></tr>'; }
+    const late = isLate(p);
+    rows += '<tr data-open="'+esc(p.id)+'"'+(late?' class="late"':'')+'>'
+      +'<td class="c-date"><b>'+esc(fmtDate(p.date))+'</b><span>'+esc(fmtTime(p.time))+'</span></td>'
+      +'<td><span class="ttl">'+esc(p.topic)+(late?'<span class="late-flag">Atrasada</span>':'')+'</span>'
+      +'<span class="sub"><span class="tag">'+esc(p.format)+'</span>'+esc(p.objective||'')+(p.paid?'<span class="tag paid">Pauta</span>':'')+'</span></td>'
+      +'<td>'+esc(p.line||'')+'</td>'
+      +'<td><select class="stsel '+stc(p.status)+'" data-status="'+esc(p.id)+'" aria-label="Estado"'+(S.canWrite?'':' disabled')+'>'+opt(STATUSES,p.status)+'</select></td>'
+      +'<td>'+(p.owner?esc(p.owner):'<em>Sin asignar</em>')+'</td></tr>';
+  });
+  return h+'<div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Publicación</th><th>Línea</th><th>Estado</th><th>Responsable</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+
+function vCalendario(){
+  const {y,m} = S.cal;
+  const first = new Date(y,m,1), off = (first.getDay()+6)%7, days = new Date(y,m+1,0).getDate();
+  const byDate = {}; sortedPosts().forEach(p=>{ (byDate[p.date]=byDate[p.date]||[]).push(p); });
+  const td = todayISO();
+  let h = '<div class="calhead"><button class="btn" data-cal="-1" aria-label="Mes anterior">‹</button><h2>'+esc(MESL[m][0].toUpperCase()+MESL[m].slice(1))+' '+y+'</h2><button class="btn" data-cal="1" aria-label="Mes siguiente">›</button>'
+    +'<span class="grow"></span>'+[9,10,11].map(mm=>'<button class="btn" data-calm="'+mm+'">'+MES[mm][0].toUpperCase()+MES[mm].slice(1)+'</button>').join('')+'</div>';
+  h += '<div class="calwrap"><div class="cal">'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>'<div class="dow">'+d+'</div>').join('');
+  const cells = Math.ceil((off+days)/7)*7;
+  for(let i=0;i<cells;i++){
+    const dn = i-off+1;
+    if(dn<1||dn>days){ h+='<div class="cell out"></div>'; continue; }
+    const iso = y+'-'+pad(m+1)+'-'+pad(dn);
+    const ps = byDate[iso]||[];
+    h += '<div class="cell'+(iso===td?' today':'')+'"><div class="n"><span>'+dn+'</span>'+(S.canWrite?'<button class="add" data-add="'+iso+'" aria-label="Agregar publicación el '+dn+'">+</button>':'')+'</div>'
+      +ps.map(p=>'<button class="chip '+stc(p.status)+'" data-open="'+esc(p.id)+'"><b>'+esc(fmtTime(p.time))+' · '+esc(p.format)+'</b>'+esc(p.topic)+'</button>').join('')+'</div>';
+  }
+  return h+'</div></div><p class="note" style="margin-top:10px">El color indica el estado: gris idea, azul copy listo, violeta diseño, verde azulado aprobado, ámbar programado, verde publicado.</p>';
+}
+
+function vLeads(){
+  const q = S.f.lq.trim().toLowerCase();
+  const all = [...S.leads.values()].filter(l=>!q||[l.name,l.company,l.product,l.contact,l.notes].join(' ').toLowerCase().includes(q));
+  if(!S.leads.size) return '<div class="empty">Aún no hay leads. Cuando llegue un mensaje interesado, regístralo con “Nuevo lead” y vincúlalo a la publicación que lo trajo.</div>';
+  return '<div class="board">'+STAGES.map(st=>{
+    const ls = all.filter(l=>l.stage===st).sort((a,b)=>(a.nextDate||'9').localeCompare(b.nextDate||'9'));
+    const total = ls.reduce((s,l)=>s+(Number(l.value)||0),0);
+    return '<section class="col"><h3>'+esc(st)+'<span>'+ls.length+(total?' · '+money(total):'')+'</span></h3>'
+      +ls.map(l=>'<div class="lcard" data-lead="'+esc(l.id)+'"><b>'+esc(l.name||'Sin nombre')+'</b>'
+        +(l.company?'<small>'+esc(l.company)+'</small>':'')
+        +(l.product?'<small>'+esc(l.product)+'</small>':'')
+        +(l.value?'<span class="val">'+money(l.value)+'</span>':'')
+        +(l.nextAction?'<small>Siguiente: '+esc(l.nextAction)+(l.nextDate?' · '+esc(fmtDate(l.nextDate)):'')+'</small>':'')
+        +'<select data-leadstage="'+esc(l.id)+'" aria-label="Etapa"'+(S.canWrite?'':' disabled')+'>'+opt(STAGES,l.stage)+'</select></div>').join('')
+      +'</section>';
+  }).join('')+'</div>';
+}
+
+function vStories(){
+  const ss = [...S.stories.values()].sort((a,b)=>String(a.id).localeCompare(String(b.id)));
+  if(!ss.length) return loadingOrEmpty('No hay Stories todavía. Crea una con “Nueva Story”.');
+  return '<p class="note">Matriz reutilizable: 2–4 Stories por semana con material existente. Los cambios se guardan al salir de cada campo.</p><div class="stories">'
+    +ss.map(s=>'<div class="scard"><input data-story="'+esc(s.id)+'" data-field="title" value="'+esc(s.title)+'" aria-label="Título"'+(S.canWrite?'':' disabled')+'>'
+      +'<textarea data-story="'+esc(s.id)+'" data-field="ideas" aria-label="Ideas"'+(S.canWrite?'':' disabled')+'>'+esc(s.ideas)+'</textarea>'
+      +(S.canWrite?'<button class="btn danger" data-delstory="'+esc(s.id)+'">Eliminar</button>':'')+'</div>').join('')+'</div>';
+}
+
+function vResumen(){
+  const ps = sortedPosts();
+  if(!ps.length) return loadingOrEmpty('Aún no hay datos para resumir.');
+  const td = todayISO();
+  const pub = ps.filter(p=>p.status==='Publicado').length;
+  const late = ps.filter(isLate).length;
+  const soon = ps.filter(p=>p.date>=td && p.status!=='Publicado').slice(0,5);
+  const sum = k => ps.reduce((s,p)=>s+(Number(p[k])||0),0);
+  const reach = sum('reach'), inter = sum('interactions'), dms = sum('dms'), lds = sum('leads');
+  const leadsAll = [...S.leads.values()];
+  const won = leadsAll.filter(l=>l.stage==='Ganado');
+  const wonVal = won.reduce((s,l)=>s+(Number(l.value)||0),0);
+  const open = leadsAll.filter(l=>!['Ganado','Perdido'].includes(l.stage));
+  const openVal = open.reduce((s,l)=>s+(Number(l.value)||0),0);
+  const lineRows = LINES.map(l=>{
+    const n = ps.filter(p=>p.line===l[0]).length, pc = Math.round(n/ps.length*100);
+    return '<div class="row"><span>'+esc(l[0])+'</span><div class="bar" title="Objetivo '+l[1]+'%"><i style="width:'+Math.min(100,pc*2)+'%"></i><u style="left:'+(l[1]*2)+'%"></u></div><small>'+n+' · '+pc+'% / '+l[1]+'%</small></div>';
+  }).join('');
+  const stRows = STATUSES.map(s=>{ const n=ps.filter(p=>p.status===s).length; return '<div class="row"><span><span class="pill '+stc(s)+'">'+esc(s)+'</span></span><div class="bar"><i class="s '+stc(s)+'" style="width:'+Math.round(n/ps.length*100)+'%"></i></div><small>'+n+'</small></div>'; }).join('');
+  const mx = Math.max(reach,1);
+  const fun = [['¿La gente la vio? (alcance)',reach],['¿Interactuó? (interacciones)',inter],['¿Mostró intención? (mensajes)',dms],['¿Llegó a comercial? (leads)',lds]]
+    .map(f=>'<div class="row"><span>'+f[0]+'</span><div class="bar"><i style="width:'+Math.max(f[1]?2:0,Math.round(f[1]/mx*100))+'%"></i></div><small>'+nf.format(f[1])+'</small></div>').join('');
+  const top = ps.filter(p=>p.leads||p.interactions||p.reach).sort((a,b)=>(Number(b.leads)||0)-(Number(a.leads)||0)||(Number(b.interactions)||0)-(Number(a.interactions)||0)).slice(0,5);
+  return '<div class="kpis">'
+    +'<div class="kpi"><b>'+pub+' / '+ps.length+'</b><span>publicadas</span></div>'
+    +'<div class="kpi"><b style="'+(late?'color:var(--bad)':'')+'">'+late+'</b><span>atrasadas</span></div>'
+    +'<div class="kpi"><b>'+open.length+'</b><span>leads abiertos · '+money(openVal)+'</span></div>'
+    +'<div class="kpi"><b>'+won.length+'</b><span>leads ganados · '+money(wonVal)+'</span></div></div>'
+    +'<div class="grid">'
+    +'<section class="panel"><h2>Avance de producción</h2>'+stRows+'</section>'
+    +'<section class="panel"><h2>Mezcla de contenido</h2>'+lineRows+'<p class="legend">La marca vertical indica el objetivo de cada línea. Las líneas son editables en cada publicación.</p></section>'
+    +'<section class="panel funnel"><h2>De la vista al lead</h2>'+fun+'<p class="legend">Suma de las métricas que llenes en cada publicación.</p></section>'
+    +'<section class="panel"><h2>Próximas por producir</h2>'+(soon.length?'<ul class="list">'+soon.map(p=>'<li data-open="'+esc(p.id)+'"><span>'+esc(p.topic)+'</span><small>'+esc(fmtDate(p.date))+' · '+esc(p.status)+'</small></li>').join('')+'</ul>':'<em>No hay publicaciones pendientes.</em>')+'</section>'
+    +'<section class="panel"><h2>Publicaciones con mejor resultado</h2>'+(top.length?'<ul class="list">'+top.map(p=>'<li data-open="'+esc(p.id)+'"><span>'+esc(p.topic)+'</span><small>'+nf.format(Number(p.leads)||0)+' leads · '+nf.format(Number(p.interactions)||0)+' int.</small></li>').join('')+'</ul>':'<em>Cuando registres métricas en las publicaciones, aparecerán aquí.</em>')+'</section>'
+    +'</div>';
+}
+
+/* ---------- cajón de edición ---------- */
+const fld = (label,name,val,type,extra) => '<label class="fld"><span>'+label+'</span><input type="'+(type||'text')+'" name="'+name+'" value="'+esc(val)+'" '+(extra||'')+'></label>';
+const area = (label,name,val,rows,cls) => '<label class="fld full"><span>'+label+'</span><textarea name="'+name+'" rows="'+(rows||4)+'">'+esc(val)+'</textarea></label>';
+const sel = (label,name,arr,val) => '<label class="fld"><span>'+label+'</span><select name="'+name+'">'+opt(arr,val)+'</select></label>';
+
+function openDrawer(title, html, footHtml){
+  D.open = true;
+  $('#dtitle').textContent = title; $('#dform').innerHTML = html; $('#dfoot').innerHTML = footHtml;
+  $('#drawer').classList.add('open'); $('#veil').classList.add('open'); $('#drawer').setAttribute('aria-hidden','false');
+  const first = $('#dform input, #dform textarea'); if(first && D.isNew) setTimeout(()=>first.focus(),50);
+}
+function closeDrawer(){
+  D.open=false; $('#drawer').classList.remove('open'); $('#veil').classList.remove('open'); $('#drawer').setAttribute('aria-hidden','true');
+}
+function foot(canDelete, meta){
+  const w = S.canWrite;
+  return '<button class="btn primary" id="dsave"'+(w?'':' disabled')+'>Guardar cambios</button><button class="btn" id="dcancel">Cancelar</button><span class="grow"></span>'
+    +(canDelete&&w?'<button class="btn danger" id="ddel">Eliminar</button>':'')+'<span class="meta" id="dmeta">'+esc(meta||'')+'</span>';
+}
+async function fillMeta(rec){
+  if(!rec || !rec.updatedAt) return;
+  const n = await nameOf(rec.updatedBy);
+  const el = $('#dmeta'); if(el && D.open) el.textContent = 'Última edición'+(n?' por '+n:'')+' · '+rel(rec.updatedAt);
+}
+function collect(){
+  const o = {};
+  $('#dform').querySelectorAll('[name]').forEach(el=>{
+    if(el.type==='checkbox') o[el.name]=el.checked;
+    else if(el.type==='number') o[el.name]= el.value===''?null:Number(el.value);
+    else o[el.name]=el.value.trim();
+  });
+  return o;
+}
+const norm = (k,v) => k==='paid' ? !!v : (v==null?'':v);
+async function submitDrawer(){
+  const vals = collect();
+  if(D.kind==='posts' && (!vals.topic || !vals.date)){ toast('Escribe al menos el tema y la fecha.'); return; }
+  if(D.kind==='leads' && !vals.name){ toast('Escribe el nombre del contacto.'); return; }
+  let ok;
+  if(D.isNew){
+    if(D.kind==='leads') vals.createdAt = Date.now();
+    ok = await save(D.kind, newId(D.kind==='posts'?'p':'l'), vals, true);
+  } else {
+    const diff = {};
+    Object.keys(vals).forEach(k=>{ if(norm(k,D.base[k])!==norm(k,vals[k])) diff[k]=vals[k]; });
+    if(!Object.keys(diff).length){ closeDrawer(); return; }
+    ok = await save(D.kind, D.id, diff, false);
+  }
+  if(ok){ closeDrawer(); toast('Cambios guardados'); }
+}
+function armDelete(btn, fn){
+  if(btn.dataset.armed){ fn(); return; }
+  btn.dataset.armed='1'; const t=btn.textContent; btn.textContent='Confirmar eliminación';
+  setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent=t; } },4000);
+}
+function wireDrawer(){
+  $('#dcancel').onclick = closeDrawer;
+  $('#dsave').onclick = submitDrawer;
+  const d = $('#ddel'); if(d) d.onclick = ()=>armDelete(d, async ()=>{ if(await removeDoc(D.kind,D.id)){ closeDrawer(); toast('Eliminado'); } });
+  const c = $('#dcopy'); if(c) c.onclick = async ()=>{
+    const ta = $('#dform [name="copy"]'); const txt = ta.value;
+    try{ await navigator.clipboard.writeText(txt); toast('Copy copiado'); }
+    catch(e){ ta.select(); try{ document.execCommand('copy'); toast('Copy copiado'); }catch(_){ toast('Selecciona el texto y cópialo manualmente.'); } }
+  };
+}
+
+function openPost(id, defs){
+  const p = id ? S.posts.get(id) : null;
+  if(id && !p) return;
+  const monthName = m => ['Octubre','Noviembre','Diciembre'][m-9] || 'Octubre';
+  const b = p || Object.assign({date:todayISO(), time:'12:30', platform:'IG + FB', format:'Reel', status:'Idea', line:'Producto', paid:false}, defs);
+  if(!p){ b.phase = b.phase || monthName(parseD(b.date).getMonth()); }
+  D.kind='posts'; D.id=id; D.base=b; D.isNew=!id;
+  const owners = [...new Set([...S.posts.values()].map(x=>x.owner).filter(Boolean))];
+  const html = '<div class="fg">'
+    +fld('Fecha','date',b.date,'date')+fld('Hora','time',b.time,'time')
+    +sel('Plataforma','platform',PLATFORMS,b.platform)+sel('Formato','format',FORMATS,b.format)
+    +'<label class="fld full"><span>Tema</span><input type="text" name="topic" value="'+esc(b.topic)+'"></label>'
+    +fld('Objetivo','objective',b.objective,'text','placeholder="Producto, Conversión, Educación…"')+sel('Línea de contenido','line',LINES,b.line)
+    +sel('Fase','phase',Object.keys(PHASES),b.phase)+sel('Estado','status',STATUSES,b.status)
+    +'<label class="fld"><span>Responsable</span><input type="text" name="owner" list="owners" value="'+esc(b.owner)+'"><datalist id="owners">'+owners.map(o=>'<option value="'+esc(o)+'">').join('')+'</datalist></label>'
+    +'<label class="fld chk"><input type="checkbox" name="paid"'+(b.paid?' checked':'')+'><span>Lleva pauta</span></label>'
+    +area('Contenido / guion (slides, escenas)','brief',b.brief,5)
+    +'<div class="fld full"><div class="copyrow"><span>Copy</span><button type="button" class="mini" id="dcopy">Copiar</button></div><textarea name="copy" rows="9">'+esc(b.copy)+'</textarea></div>'
+    +area('Notas internas','notes',b.notes,3)
+    +fld('Enlace de la publicación','link',b.link,'url','placeholder="https://…"')
+    +'<div class="sec full">Resultados<small>Se suman en la pestaña Resumen</small></div>'
+    +fld('Alcance','reach',b.reach,'number','min="0"')+fld('Interacciones','interactions',b.interactions,'number','min="0"')
+    +fld('Mensajes (DM)','dms',b.dms,'number','min="0"')+fld('Leads que llegaron a comercial','leads',b.leads,'number','min="0"')
+    +'</div>';
+  openDrawer(p?'Editar publicación':'Nueva publicación', html, foot(!!p, ''));
+  wireDrawer(); if(p) fillMeta(p);
+}
+
+function openLead(id){
+  const l = id ? S.leads.get(id) : null;
+  if(id && !l) return;
+  const b = l || {stage:'Nuevo', source:'DM Instagram'};
+  D.kind='leads'; D.id=id; D.base=b; D.isNew=!id;
+  const posts = sortedPosts().map(p=>[p.id,0,fmtDate(p.date)+' · '+p.topic]);
+  const html = '<div class="fg">'
+    +fld('Nombre','name',b.name)+fld('Empresa / taller','company',b.company)
+    +fld('Contacto (teléfono, @usuario)','contact',b.contact)+sel('Fuente','source',SOURCES,b.source)
+    +'<label class="fld full"><span>Publicación que lo trajo</span><select name="postId"><option value="">— Sin vincular —</option>'+opt(posts,b.postId)+'</select></label>'
+    +fld('Producto de interés','product',b.product,'text','placeholder="Minimax SC 4E"')+sel('Etapa','stage',STAGES,b.stage)
+    +fld('Valor estimado (COP)','value',b.value,'number','min="0" step="1000"')+fld('Responsable','owner',b.owner)
+    +fld('Próxima acción','nextAction',b.nextAction)+fld('Fecha de la acción','nextDate',b.nextDate,'date')
+    +area('Notas','notes',b.notes,5)+'</div>';
+  openDrawer(l?'Editar lead':'Nuevo lead', html, foot(!!l,''));
+  wireDrawer(); if(l) fillMeta(l);
+}
+
+/* ---------- exportar ---------- */
+const csvCell = v => { const s = v==null?'':String(v); return /[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
+async function downloadCsv(filename, rows){
+  if(!S.dl){ toast('La descarga no está disponible en esta vista.'); return; }
+  const data = '\uFEFF'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
+  try{ await S.dl.save({filename, data}); toast('Archivo guardado'); }
+  catch(e){ if(!e || e.code!=='declined') toast('No se pudo descargar el archivo.'); }
+}
+function exportPosts(){
+  const rows = [['Fecha','Hora','Plataforma','Formato','Tema','Objetivo','Línea','Fase','Estado','Responsable','Pauta','Contenido','Copy','Notas','Enlace','Alcance','Interacciones','Mensajes','Leads']];
+  sortedPosts().forEach(p=>rows.push([p.date,p.time,p.platform,p.format,p.topic,p.objective,p.line,p.phase,p.status,p.owner,p.paid?'Sí':'No',p.brief,p.copy,p.notes,p.link,p.reach,p.interactions,p.dms,p.leads]));
+  downloadCsv('parrilla-scm-colombia.csv', rows);
+}
+function exportLeads(){
+  const rows = [['Nombre','Empresa','Contacto','Fuente','Producto','Etapa','Valor COP','Responsable','Próxima acción','Fecha acción','Notas']];
+  [...S.leads.values()].forEach(l=>rows.push([l.name,l.company,l.contact,l.source,l.product,l.stage,l.value,l.owner,l.nextAction,l.nextDate,l.notes]));
+  downloadCsv('leads-scm-colombia.csv', rows);
+}
+
+/* ---------- eventos ---------- */
+$('#tabs').addEventListener('click', e=>{
+  const b = e.target.closest('.tab'); if(!b) return;
+  S.view = b.dataset.view; renderChrome(); renderToolbar(); renderContent();
+});
+$('#content').addEventListener('click', e=>{
+  if(e.target.closest('select')) return;
+  const fs = e.target.closest('[data-fstatus]');
+  if(fs){ S.f.status = S.f.status===fs.dataset.fstatus ? '' : fs.dataset.fstatus; renderToolbar(); renderContent(); return; }
+  const cal = e.target.closest('[data-cal]');
+  if(cal){ let m=S.cal.m+Number(cal.dataset.cal), y=S.cal.y; if(m<0){m=11;y--;} if(m>11){m=0;y++;} S.cal={y,m}; renderContent(); return; }
+  const cm = e.target.closest('[data-calm]'); if(cm){ S.cal={y:2026,m:Number(cm.dataset.calm)}; renderContent(); return; }
+  const add = e.target.closest('[data-add]'); if(add){ openPost(null,{date:add.dataset.add}); return; }
+  const ds = e.target.closest('[data-delstory]'); if(ds){ armDelete(ds, ()=>removeDoc('stories', ds.dataset.delstory)); return; }
+  const op = e.target.closest('[data-open]'); if(op){ openPost(op.dataset.open); return; }
+  const ld = e.target.closest('[data-lead]'); if(ld){ openLead(ld.dataset.lead); return; }
+});
+$('#content').addEventListener('change', async e=>{
+  const t = e.target;
+  if(t.dataset.status){ const ok = await save('posts', t.dataset.status, {status:t.value}, false); if(!ok) renderContent(); return; }
+  if(t.dataset.leadstage){ const ok = await save('leads', t.dataset.leadstage, {stage:t.value}, false); if(!ok) renderContent(); return; }
+  if(t.dataset.story){ const cur = S.stories.get(t.dataset.story); if(cur && cur[t.dataset.field]===t.value) return; const ok = await save('stories', t.dataset.story, {[t.dataset.field]:t.value}, false); if(ok) toast('Guardado'); }
+});
+$('#veil').addEventListener('click', closeDrawer);
+$('#dclose').addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && D.open) closeDrawer(); });
+
+/* ---------- arranque ---------- */
+const use = n => (window.claude && window.claude.use) ? Promise.resolve(window.claude.use(n)).catch(()=>null) : Promise.resolve(null);
+function listen(coll){
+  S.db.collection(coll).onSnapshot(snap=>{
+    const m = new Map(); snap.docs.forEach(d=>{ const x=d.data(); if(x) m.set(d.id, Object.assign({}, x, {id:d.id})); });
+    S[coll]=m; S.ready[coll]=true; renderContent();
+  }, err=>{ toast(errMsg(err)); });
+}
+async function init(){
+  renderChrome(); renderToolbar();
+  const [db,user,dl] = await Promise.all([use('db'), use('user'), use('downloads')]);
+  S.dl = dl; S.userNS = user;
+  if(user){
+    try{ S.meId = await user.id(); }catch(e){}
+    try{ const me = await user.me(); S.meName = (me && me.name) || ''; }catch(e){}
+    try{ const cw = await user.can('data.write'); if(cw===false) S.canWrite=false; }catch(e){}
+  }
+  if(!db){
+    S.offline = true;
+    SEED_POSTS.forEach(p=>S.posts.set(p.id,p)); SEED_STORIES.forEach(s=>S.stories.set(s.id,s));
+    renderChrome(); renderToolbar(); renderContent(); return;
+  }
+  S.db = db;
+  renderChrome(); renderToolbar();
+  listen('posts'); listen('leads'); listen('stories');
+  if(S.canWrite){ try{ await seedIfEmpty(); }catch(e){ S.seeding=false; renderContent(); toast(errMsg(e)); } }
+}
+init();
+})();
+</script>
+</body>
+</html>
